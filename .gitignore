@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.vite/
+.DS_Store
+*.log
+.env
+.env.local
+
+# Editor/agent local config
+.claude/
+
+# Rendered output is large; commit out/final.mp4 deliberately (or link it in your
+# README if it's over 100MB). Ignore everything else under out/.
+out/*
+!out/final.mp4

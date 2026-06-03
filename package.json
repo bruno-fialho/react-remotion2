@@ -1,0 +1,30 @@
+{
+  "name": "tubegen-editor-challenge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "gen:manifest": "node scripts/gen-manifest.mjs",
+    "predev": "node scripts/gen-manifest.mjs",
+    "dev": "vite",
+    "prebuild": "node scripts/gen-manifest.mjs",
+    "build": "vite build",
+    "preview": "vite preview",
+    "remotion:studio": "remotion studio src/remotion/index.js",
+    "render": "node scripts/render.js"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.230",
+    "@remotion/media-utils": "4.0.230",
+    "@remotion/player": "4.0.230",
+    "@remotion/renderer": "4.0.230",
+    "@remotion/transitions": "4.0.230",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "4.0.230"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.1"
+  }
+}

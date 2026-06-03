@@ -1,0 +1,58 @@
+{
+  "visuals": [
+    {
+      "name": "001.mp4",
+      "src": "/demo/assets/visuals/001.mp4"
+    },
+    {
+      "name": "002.mp4",
+      "src": "/demo/assets/visuals/002.mp4"
+    },
+    {
+      "name": "003.mp4",
+      "src": "/demo/assets/visuals/003.mp4"
+    },
+    {
+      "name": "004.mp4",
+      "src": "/demo/assets/visuals/004.mp4"
+    },
+    {
+      "name": "005.mp4",
+      "src": "/demo/assets/visuals/005.mp4"
+    },
+    {
+      "name": "006.mp4",
+      "src": "/demo/assets/visuals/006.mp4"
+    },
+    {
+      "name": "007.mp4",
+      "src": "/demo/assets/visuals/007.mp4"
+    },
+    {
+      "name": "008.mp4",
+      "src": "/demo/assets/visuals/008.mp4"
+    },
+    {
+      "name": "009.mp4",
+      "src": "/demo/assets/visuals/009.mp4"
+    },
+    {
+      "name": "010.mp4",
+      "src": "/demo/assets/visuals/010.mp4"
+    },
+    {
+      "name": "011.mp4",
+      "src": "/demo/assets/visuals/011.mp4"
+    },
+    {
+      "name": "012.mp4",
+      "src": "/demo/assets/visuals/012.mp4"
+    }
+  ],
+  "audio": [
+    {
+      "name": "voiceover.mp3",
+      "src": "/demo/assets/voiceover.mp3"
+    }
+  ]
+}

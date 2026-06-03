@@ -1,0 +1,24 @@
+[
+  {
+    "id": "voiceover",
+    "type": "voiceover",
+    "trackId": "a1",
+    "src": "/demo/assets/voiceover.mp3",
+    "startFrame": 0,
+    "durationFrames": 1033,
+    "volume": 1.0
+  },
+
+  { "id": "v1_01", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/001.mp4", "startFrame": 0,   "durationFrames": 97 },
+  { "id": "v1_02", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/002.mp4", "startFrame": 97,  "durationFrames": 42 },
+  { "id": "v1_03", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/003.mp4", "startFrame": 139, "durationFrames": 38 },
+  { "id": "v1_04", "type": "broll", "trackId": "v1", "src": "/demo/assets/visuals/004.mp4", "startFrame": 177, "durationFrames": 102 },
+  { "id": "v1_05", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/005.mp4", "startFrame": 279, "durationFrames": 150 },
+  { "id": "v1_06", "type": "broll", "trackId": "v1", "src": "/demo/assets/visuals/006.mp4", "startFrame": 429, "durationFrames": 103 },
+  { "id": "v1_07", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/007.mp4", "startFrame": 532, "durationFrames": 64 },
+  { "id": "v1_08", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/008.mp4", "startFrame": 596, "durationFrames": 128 },
+  { "id": "v1_09", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/009.mp4", "startFrame": 724, "durationFrames": 57 },
+  { "id": "v1_10", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/010.mp4", "startFrame": 781, "durationFrames": 59 },
+  { "id": "v1_11", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/011.mp4", "startFrame": 840, "durationFrames": 98 },
+  { "id": "v1_12", "type": "animation", "trackId": "v1", "src": "/demo/assets/visuals/012.mp4", "startFrame": 938, "durationFrames": 90 }
+]
