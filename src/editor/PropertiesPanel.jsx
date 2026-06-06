@@ -30,6 +30,8 @@ export default function PropertiesPanel({ state, dispatch }) {
 
   const patch = (p) => dispatch({ type: 'UPDATE_ITEM', id: item.id, patch: p });
   const isAudio = AUDIO_TYPES.has(item.type);
+  // Scenes are locked, but overlay / scene-type items can be freely positioned.
+  const isPositionable = PRIMITIVE_ITEM_TYPES.has(item.type);
   const seconds = (frames) => (frames / FPS).toFixed(2);
 
   // Effect editor → patch the matching effects[] entry.
@@ -47,19 +49,45 @@ export default function PropertiesPanel({ state, dispatch }) {
   return (
     <aside className="properties-panel">
       <header className="pp-header">
-        <span className="pp-title">{basename(item.src) || item.type}</span>
+        <span className="pp-title">{basename(item.src) || item.primitiveId || item.type}</span>
         <span className="pp-type">{item.type}</span>
       </header>
 
       <section className="props-form">
-        <div className="pp-row">
-          <span>Start</span>
-          <span>{item.startFrame} f · {seconds(item.startFrame)}s</span>
-        </div>
-        <div className="pp-row">
-          <span>Duration</span>
-          <span>{item.durationFrames} f · {seconds(item.durationFrames)}s</span>
-        </div>
+        {isPositionable ? (
+          <>
+            <label>
+              Start (frames)
+              <input
+                type="number" min="0" step="1"
+                value={item.startFrame}
+                onChange={(e) => patch({ startFrame: Math.max(0, parseInt(e.target.value, 10) || 0) })}
+              />
+            </label>
+            <label>
+              Duration (frames)
+              <input
+                type="number" min="1" step="1"
+                value={item.durationFrames}
+                onChange={(e) => patch({ durationFrames: Math.max(1, parseInt(e.target.value, 10) || 1) })}
+              />
+            </label>
+            <button className="pp-remove" onClick={() => dispatch({ type: 'REMOVE_ITEM', id: item.id })}>
+              Remove from timeline
+            </button>
+          </>
+        ) : (
+          <>
+            <div className="pp-row">
+              <span>Start</span>
+              <span>{item.startFrame} f · {seconds(item.startFrame)}s</span>
+            </div>
+            <div className="pp-row">
+              <span>Duration</span>
+              <span>{item.durationFrames} f · {seconds(item.durationFrames)}s</span>
+            </div>
+          </>
+        )}
         <p className="pp-hint">
           {seconds(item.startFrame)}s → {seconds(item.startFrame + item.durationFrames)}s
         </p>

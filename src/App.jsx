@@ -69,7 +69,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <AssetsSidebar state={state} dispatch={dispatch} />
+      <AssetsSidebar state={state} dispatch={dispatch} currentFrame={currentFrame} />
 
       <main className="stage">
         <div className="preview">

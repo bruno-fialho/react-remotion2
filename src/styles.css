@@ -167,6 +167,12 @@ html, body, #root {
 }
 .effect-item:hover:not(:disabled) { border-color: var(--accent); }
 .effect-item:disabled { opacity: 0.4; cursor: not-allowed; }
+.effect-auto {
+  background: linear-gradient(180deg, #2c2658, #211d44);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+.effect-auto .effect-cat { color: var(--accent); }
 .effect-cat {
   font-size: 10px;
   text-transform: uppercase;
@@ -339,6 +345,10 @@ html, body, #root {
 .tl-clip.is-audio {
   background: linear-gradient(180deg, #1d4a4a, #163b3b);
   border-color: #2bb3a3;
+}
+.tl-clip.is-overlay {
+  background: linear-gradient(180deg, #5a3a16, #3f2a12);
+  border-color: var(--accent);
 }
 .tl-clip.is-selected {
   outline: 2px solid #fff;

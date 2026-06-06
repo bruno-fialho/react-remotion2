@@ -10,9 +10,16 @@
 //                which scenes to apply it to.
 
 import { useEffect, useState } from 'react';
-import { TRACK_TYPES } from './types';
+import { TRACK_TYPES, ITEM_TYPES } from './types';
 import { itemsOnTrack } from './state';
 import { getPrimitivesByCategory } from './extension/primitives';
+import { suggestEdits } from './ai/autoEnhance';
+
+const OVERLAY_DEFAULT_FRAMES = 90; // 3s @ 30fps — sensible default span for a new overlay
+const OVERLAY_ITEM_TYPE = {
+  overlay: ITEM_TYPES.OVERLAY,
+  sceneType: ITEM_TYPES.SCENE_TYPE,
+};
 
 const TABS = ['Visuals', 'Audio', 'Effects'];
 const basename = (src) => (src ? src.split('/').pop() : '');
@@ -51,7 +58,7 @@ function AssetCard({ asset, kind }) {
   );
 }
 
-export default function AssetsSidebar({ state, dispatch }) {
+export default function AssetsSidebar({ state, dispatch, currentFrame = 0 }) {
   const [tab, setTab] = useState('Visuals');
   const [manifest, setManifest] = useState({ visuals: [], audio: [] });
   const [modalEffect, setModalEffect] = useState(null); // primitive awaiting scene pick
@@ -86,6 +93,28 @@ export default function AssetsSidebar({ state, dispatch }) {
       next.has(id) ? next.delete(id) : next.add(id);
       return next;
     });
+
+  // Overlays / scene types are timeline items, not per-scene effects: clicking one drops a
+  // new item on the overlay track at the playhead. ADD_ITEM auto-selects it, so its props
+  // open in the PropertiesPanel immediately.
+  const addOverlay = (primitive) => {
+    dispatch({
+      type: 'ADD_ITEM',
+      item: {
+        type: OVERLAY_ITEM_TYPE[primitive.category] ?? ITEM_TYPES.OVERLAY,
+        trackId: TRACK_TYPES.O1,
+        startFrame: Math.max(0, Math.round(currentFrame)),
+        durationFrames: OVERLAY_DEFAULT_FRAMES,
+        primitiveId: primitive.id,
+        primitiveProps: { ...primitive.defaultProps },
+      },
+    });
+  };
+
+  // Bonus: one-click heuristic first pass. Pure suggestEdits() → dispatch each action.
+  const autoEnhance = () => {
+    suggestEdits(state.items).forEach((action) => dispatch(action));
+  };
 
   const applyEffectToPicked = () => {
     scenes.forEach((scene) => {
@@ -142,10 +171,23 @@ export default function AssetsSidebar({ state, dispatch }) {
 
       {tab === 'Effects' && (
         <div className="effects-list">
-          <p className="muted">Pick an effect, then choose which scenes to apply it to.</p>
+          <button className="effect-item effect-auto" onClick={autoEnhance}>
+            <span className="effect-cat">AI</span>
+            <span className="effect-label">✨ Auto-enhance</span>
+          </button>
+          <p className="muted">Effects &amp; transitions — pick one, then choose which scenes to apply it to.</p>
           {['effect', 'transition'].flatMap((cat) =>
             getPrimitivesByCategory(cat).map((p) => (
               <button key={p.id} className="effect-item" onClick={() => openEffectModal(p)}>
+                <span className="effect-cat">{p.category}</span>
+                <span className="effect-label">{p.label}</span>
+              </button>
+            ))
+          )}
+          <p className="muted">Overlays &amp; scene types — added at the playhead, then positioned in the panel.</p>
+          {['overlay', 'sceneType'].flatMap((cat) =>
+            getPrimitivesByCategory(cat).map((p) => (
+              <button key={p.id} className="effect-item" onClick={() => addOverlay(p)}>
                 <span className="effect-cat">{p.category}</span>
                 <span className="effect-label">{p.label}</span>
               </button>

@@ -18,6 +18,7 @@ const GUTTER = 84;               // width of the sticky track-label column (keep
 
 const TRACKS = [
   { id: TRACK_TYPES.V1, label: 'Visuals' },
+  { id: TRACK_TYPES.O1, label: 'Overlays' },
   { id: TRACK_TYPES.A1, label: 'Audio' },
 ];
 
@@ -115,14 +116,15 @@ export default function Timeline({ state, dispatch, currentFrame = 0, onSeek }) 
                 <div className="tl-lane">
                   {items.map((item) => {
                     const isAudio = AUDIO_TYPES.has(item.type);
+                    const isOverlay = item.trackId === TRACK_TYPES.O1;
                     const selected = item.id === state.selectedItemId;
-                    const label = basename(item.src) || item.type;
+                    const label = basename(item.src) || item.primitiveId || item.type;
                     return (
                       <div
                         key={item.id}
                         className={`tl-clip${isAudio ? ' is-audio' : ''}${
-                          selected ? ' is-selected' : ''
-                        }`}
+                          isOverlay ? ' is-overlay' : ''
+                        }${selected ? ' is-selected' : ''}`}
                         style={{
                           left: frameToPx(item.startFrame),
                           width: frameToPx(item.durationFrames),

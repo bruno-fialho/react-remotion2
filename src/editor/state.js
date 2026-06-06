@@ -56,10 +56,11 @@ export function reducer(state, action) {
     }
 
     case 'ADD_ITEM': {
-      // action.item (without id)
+      // action.item (without id). The new item is auto-selected so its props open
+      // immediately in the PropertiesPanel.
       const item = { ...action.item, id: makeItemId() };
       const items = [...state.items, item];
-      return { ...state, items, durationFrames: totalDuration(items) };
+      return { ...state, items, selectedItemId: item.id, durationFrames: totalDuration(items) };
     }
 
     case 'REMOVE_ITEM': {
@@ -70,9 +71,16 @@ export function reducer(state, action) {
 
     case 'APPLY_EFFECT': {
       // action.itemId, action.primitiveId, action.props
+      // Upsert by primitiveId: re-applying an effect updates it in place rather than
+      // stacking a duplicate (e.g. two colour grades). Keeps Auto-enhance idempotent.
+      const entry = { id: action.primitiveId, props: action.props };
       const items = state.items.map((i) => {
         if (i.id !== action.itemId) return i;
-        const effects = [...(i.effects ?? []), { id: action.primitiveId, props: action.props }];
+        const existing = i.effects ?? [];
+        const has = existing.some((e) => e.id === action.primitiveId);
+        const effects = has
+          ? existing.map((e) => (e.id === action.primitiveId ? entry : e))
+          : [...existing, entry];
         return { ...i, effects };
       });
       return { ...state, items };

@@ -9,16 +9,104 @@
     "volume": 1.0
   },
 
-  { "id": "v1_01", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/001.mp4", "startFrame": 0,   "durationFrames": 97 },
-  { "id": "v1_02", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/002.mp4", "startFrame": 97,  "durationFrames": 42 },
-  { "id": "v1_03", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/003.mp4", "startFrame": 139, "durationFrames": 38 },
-  { "id": "v1_04", "type": "broll", "trackId": "v1", "src": "/demo/assets/visuals/004.mp4", "startFrame": 177, "durationFrames": 102 },
-  { "id": "v1_05", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/005.mp4", "startFrame": 279, "durationFrames": 150 },
-  { "id": "v1_06", "type": "broll", "trackId": "v1", "src": "/demo/assets/visuals/006.mp4", "startFrame": 429, "durationFrames": 103 },
-  { "id": "v1_07", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/007.mp4", "startFrame": 532, "durationFrames": 64 },
-  { "id": "v1_08", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/008.mp4", "startFrame": 596, "durationFrames": 128 },
-  { "id": "v1_09", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/009.mp4", "startFrame": 724, "durationFrames": 57 },
-  { "id": "v1_10", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/010.mp4", "startFrame": 781, "durationFrames": 59 },
-  { "id": "v1_11", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/011.mp4", "startFrame": 840, "durationFrames": 98 },
-  { "id": "v1_12", "type": "animation", "trackId": "v1", "src": "/demo/assets/visuals/012.mp4", "startFrame": 938, "durationFrames": 90 }
+  { "id": "v1_01", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/001.mp4", "startFrame": 0,   "durationFrames": 97,
+    "effects": [
+      { "id": "colorGrade", "props": { "brightness": 1.03, "contrast": 1.1, "saturate": 1.06, "vignette": 0.3 } },
+      { "id": "kenBurns", "props": { "startScale": 1.04, "endScale": 1.18, "originX": 0.5, "originY": 0.4, "easing": "standard" } }
+    ],
+    "transition": { "id": "crossfade", "props": { "durationFrames": 15 } } },
+
+  { "id": "v1_02", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/002.mp4", "startFrame": 97,  "durationFrames": 42,
+    "effects": [
+      { "id": "colorGrade", "props": { "brightness": 1.03, "contrast": 1.1, "saturate": 1.06, "vignette": 0.3 } },
+      { "id": "panRight", "props": { "scale": 1.18, "pan": 6 } }
+    ],
+    "transition": { "id": "crossfade", "props": { "durationFrames": 12 } } },
+
+  { "id": "v1_03", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/003.mp4", "startFrame": 139, "durationFrames": 38,
+    "effects": [
+      { "id": "colorGrade", "props": { "brightness": 1.03, "contrast": 1.1, "saturate": 1.06, "vignette": 0.3 } },
+      { "id": "panLeft", "props": { "scale": 1.18, "pan": 6 } }
+    ] },
+
+  { "id": "v1_04", "type": "broll", "trackId": "v1", "src": "/demo/assets/visuals/004.mp4", "startFrame": 177, "durationFrames": 102,
+    "effects": [
+      { "id": "colorGrade", "props": { "brightness": 1.03, "contrast": 1.1, "saturate": 1.06, "vignette": 0.3 } }
+    ] },
+
+  { "id": "v1_05", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/005.mp4", "startFrame": 279, "durationFrames": 150,
+    "effects": [
+      { "id": "colorGrade", "props": { "brightness": 1.03, "contrast": 1.1, "saturate": 1.06, "vignette": 0.3 } },
+      { "id": "kenBurns", "props": { "startScale": 1.05, "endScale": 1.22, "originX": 0.4, "originY": 0.45, "easing": "standard" } }
+    ],
+    "transition": { "id": "dipToBlack", "props": { "durationFrames": 22, "color": "#000000" } } },
+
+  { "id": "v1_06", "type": "broll", "trackId": "v1", "src": "/demo/assets/visuals/006.mp4", "startFrame": 429, "durationFrames": 103,
+    "effects": [
+      { "id": "colorGrade", "props": { "brightness": 1.03, "contrast": 1.1, "saturate": 1.06, "vignette": 0.3 } }
+    ],
+    "transition": { "id": "slidePush", "props": { "durationFrames": 18, "direction": "left" } } },
+
+  { "id": "v1_07", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/007.mp4", "startFrame": 532, "durationFrames": 64,
+    "effects": [
+      { "id": "colorGrade", "props": { "brightness": 1.03, "contrast": 1.1, "saturate": 1.06, "vignette": 0.3 } },
+      { "id": "zoomIn", "props": { "startScale": 1.0, "endScale": 1.14 } }
+    ],
+    "transition": { "id": "crossfade", "props": { "durationFrames": 14 } } },
+
+  { "id": "v1_08", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/008.mp4", "startFrame": 596, "durationFrames": 128,
+    "effects": [
+      { "id": "colorGrade", "props": { "brightness": 1.03, "contrast": 1.1, "saturate": 1.06, "vignette": 0.3 } },
+      { "id": "kenBurns", "props": { "startScale": 1.2, "endScale": 1.05, "originX": 0.55, "originY": 0.4, "easing": "standard" } }
+    ],
+    "transition": { "id": "crossfade", "props": { "durationFrames": 14 } } },
+
+  { "id": "v1_09", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/009.mp4", "startFrame": 724, "durationFrames": 57,
+    "effects": [
+      { "id": "colorGrade", "props": { "brightness": 1.03, "contrast": 1.1, "saturate": 1.06, "vignette": 0.3 } },
+      { "id": "panRight", "props": { "scale": 1.18, "pan": 6 } }
+    ],
+    "transition": { "id": "crossfade", "props": { "durationFrames": 12 } } },
+
+  { "id": "v1_10", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/010.mp4", "startFrame": 781, "durationFrames": 59,
+    "effects": [
+      { "id": "colorGrade", "props": { "brightness": 1.03, "contrast": 1.1, "saturate": 1.06, "vignette": 0.3 } },
+      { "id": "panLeft", "props": { "scale": 1.18, "pan": 6 } }
+    ],
+    "transition": { "id": "crossfade", "props": { "durationFrames": 12 } } },
+
+  { "id": "v1_11", "type": "image", "trackId": "v1", "src": "/demo/assets/visuals/011.mp4", "startFrame": 840, "durationFrames": 98,
+    "effects": [
+      { "id": "colorGrade", "props": { "brightness": 1.03, "contrast": 1.1, "saturate": 1.06, "vignette": 0.3 } },
+      { "id": "kenBurns", "props": { "startScale": 1.05, "endScale": 1.18, "originX": 0.6, "originY": 0.45, "easing": "standard" } }
+    ] },
+
+  { "id": "v1_12", "type": "animation", "trackId": "v1", "src": "/demo/assets/visuals/012.mp4", "startFrame": 938, "durationFrames": 90,
+    "effects": [
+      { "id": "colorGrade", "props": { "brightness": 1.03, "contrast": 1.1, "saturate": 1.06, "vignette": 0.3 } }
+    ] },
+
+  { "id": "o1_title", "type": "overlay", "trackId": "o1", "primitiveId": "titleCard", "startFrame": 0, "durationFrames": 84,
+    "primitiveProps": {
+      "title": "When Your Dog Barks At Night",
+      "kicker": "What It Means",
+      "subtitle": "",
+      "textColor": "#FFFFFF",
+      "accentColor": "#FFB020",
+      "align": "center",
+      "scrim": 0.5,
+      "exitFrames": 20
+    } },
+
+  { "id": "o1_payoff", "type": "sceneType", "trackId": "o1", "primitiveId": "bigStatement", "startFrame": 968, "durationFrames": 60,
+    "primitiveProps": {
+      "text": "Not random at all.",
+      "accent": "random",
+      "textColor": "#FFFFFF",
+      "accentColor": "#FFB020",
+      "scrim": 0.55,
+      "scrimColor": "#0B0B0F",
+      "stagger": 5,
+      "exitFrames": 18
+    } }
 ]
