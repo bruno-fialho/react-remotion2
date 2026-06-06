@@ -63,6 +63,7 @@ export default function AssetsSidebar({ state, dispatch, currentFrame = 0 }) {
   const [manifest, setManifest] = useState({ visuals: [], audio: [] });
   const [modalEffect, setModalEffect] = useState(null); // primitive awaiting scene pick
   const [picked, setPicked] = useState(() => new Set());
+  const [enhancedCount, setEnhancedCount] = useState(0);
 
   useEffect(() => {
     fetch('/demo/manifest.json')
@@ -112,8 +113,12 @@ export default function AssetsSidebar({ state, dispatch, currentFrame = 0 }) {
   };
 
   // Bonus: one-click heuristic first pass. Pure suggestEdits() → dispatch each action.
+  // Runs once: the button reports how many scenes it touched, then disables itself.
   const autoEnhance = () => {
-    suggestEdits(state.items).forEach((action) => dispatch(action));
+    const actions = suggestEdits(state.items);
+    if (actions.length === 0) return;
+    actions.forEach((action) => dispatch(action));
+    setEnhancedCount(actions.length);
   };
 
   const applyEffectToPicked = () => {
@@ -171,9 +176,15 @@ export default function AssetsSidebar({ state, dispatch, currentFrame = 0 }) {
 
       {tab === 'Effects' && (
         <div className="effects-list">
-          <button className="effect-item effect-auto" onClick={autoEnhance}>
+          <button
+            className="effect-item effect-auto"
+            onClick={autoEnhance}
+            disabled={enhancedCount > 0}
+          >
             <span className="effect-cat">AI</span>
-            <span className="effect-label">✨ Auto-enhance</span>
+            <span className="effect-label">
+              {enhancedCount > 0 ? `✓ Enhanced ${enhancedCount} scenes` : '✨ Auto-enhance'}
+            </span>
           </button>
           <p className="muted">Effects &amp; transitions — pick one, then choose which scenes to apply it to.</p>
           {['effect', 'transition'].flatMap((cat) =>

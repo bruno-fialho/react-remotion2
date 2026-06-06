@@ -173,6 +173,14 @@ html, body, #root {
   font-weight: 600;
 }
 .effect-auto .effect-cat { color: var(--accent); }
+/* Completed state: stays legible (not the generic 40% disabled dim) and reads as "done". */
+.effect-auto:disabled {
+  opacity: 1;
+  cursor: default;
+  background: linear-gradient(180deg, #163b3b, #122e2e);
+  border-color: #2bb3a3;
+}
+.effect-auto:disabled .effect-cat { color: #2bb3a3; }
 .effect-cat {
   font-size: 10px;
   text-transform: uppercase;
